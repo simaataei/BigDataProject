@@ -13,22 +13,25 @@ The TC system is a classified transporters dataset, analogous to the Enzyme Comm
 
 
 MATERIALS AND METHODS
+1.	Preprocessing:
+Preprocessing includes 3 major steps: First, excluding sequences with unacceptable amino acids (B, Z, X, J, O, U ). Then, excluding sequences with unacceptable length (length > 1000 or < 50). Third step is extracting a balanced dataset which is explained on the following section. 
 
-1.DATASET
 
-In this research, we classify transporter protein sequences on the TCDB database. TCBD is an abbreviation for the Transporter Classification Database, which is a web-accessible database containing sequence, classification, structural, functional and evolutionary information about transport systems from a variety of living organisms. Transporter Classification Database is a database containing 10,000 non-redundant transporter proteins. The database details a comprehensive classification system for membrane transport proteins, the Transporter Classification or TC system, approved by the International Union of Biochemistry and Molecular Biology. The dataset includes transporter protein sequences, their descriptions, TC numbers, and examples of 1409 families[2]. This dataset is downloaded from the TCDB website and the protein sequences in this dataset are in FASTA file format. 
 
-2. METHODS:
+2.	DATASET
+In this research, we analyze the Transporter Classification Database (TCDB ). TCBD contains more than 10,000 non-redundant transporter proteins. After preprocessing the data, we extracted two different datasets using down-sampling. We extract 30 sequences of each family/subfamily randomly based on central limit theorem. Consequently, families and subfamilies with less than 30 sequences are excluded. First dataset, family, includes 2880 samples (30 samples from 96 families) and second dataset, subfamily, includes 1500 samples (30 samples from 50 subfamilies).
 
-2.1 FEATURE EXTRACTION
+3.	 FEATURE EXTRACTION
+In this project, several features are explored: Amino Acid Composition (AAC), pair amino acid composition (PAAC), and resampled one-hot feature vector. The Amino Acid Composition or AAC is the number of amino acids of each type normalized with the total number of residues. PAAC is the normalized frequency of each pair of amino acids. And the third feature vector is the resampled one-hot encoding feature vector. First, one-hot encoding creates a binary column for each category and returns a sparse matrix or dense array. As a result, each amino acid chain is mapped to a binary string. Then, “scipy.signal” package is used to sample from each sparse binary strings. We set a maximum sample length to 100.
+In addition to positional and combinational features, evolutional features might be useful in classifying transporter protein sequences. The alignment of protein sequences reveals practical evolutional information of protein sequences. BLAST or Basic Local Alignment Search Tool algorithm is a local sequence alignment method designed for protein sequence alignments. This algorithm takes a query protein sequence as input, and searches the sequence databases for similarities[3]. Protein similarities could be used in predicting the families and subfamilies of each sequence.   
 
-In protein sequence classifications multiple features are considered valuable. In this project, several features are to be explored including positional and combinational features: Amino Acid Composition (AAC),  pair amino acid composition (PAAC) is the normalized frequency of each pair of amino acids, Pseudo Amino Acid Composition (PseAAC), Amino acid indices (AAindex), and Position-Specific Scoring Matrix (PSSM). 
-In addition to positional and combinational features, evolutional features might be useful in classifying transporter protein sequences. The alignment of protein sequences reveals practical evolutional information of protein sequences. BLAST and PsiBLAST methods are used for protein sequence alignments. BLAST or Basic Local Alignment Search Tool algorithm is a local sequence alignment method.  This algorithm compares nucleotide or protein sequences to sequence databases and calculates the statistical significance of matches. The BLAST program takes a query DNA or protein sequence as input, and search DNA or protein sequence databases for similarities[3]. Protein similarities could be used in predicting the families and superfamilies of each sequence. 
-According to the number of presented features, methods of feature engineering are required to extract the most related feature vector.  
-
-2.2 CLASSIFICATION:
-
-In this project, we consider using spark methods to preprocess the data as we know that using spark is much faster in working with big data. This preprocessing phase could be loading data from the dataset, sorting, fetching specific parts of data. After that, the prepared data would be passed to the classification step. Multiple previous studies indicate Support Vector Machines (SVMs) as one of the most reliable classifiers on predicting protein sequences. In this research, SVMs with different kernels and configurations are to be tested with different feature vectors. Also, other types of classifiers are to be considered. Random Forrest and ensembled methods are going to be explored in this research. K-folds cross-validation is going to implement to assist with more accurate results. 
+4.	 CLASSIFICATION
+In this project, we implemented 4 different classifiers with different configurations. 
+   •	Support Vector Machines or SVM with multiple kernels (linear, RBF, multinomial)
+   •	Random Forrest with various number of estimators (from 100 to 1500 with step of 100)
+   •	K-Nearest Neighbor with different numbers of K
+   •	and K-Nearest Neighbor using BLAST
+ The datasets are split to test and train segments with the proportion of 0.2 and 0.8 respectively. 5-folds cross-validation is implemented to assist with more accurate results. 
 
 
 REFERENCES:
@@ -40,7 +43,5 @@ REFERENCES:
 
 [3] Altschul, S. F., Gish, W., Miller, W., Myers, E. W., & Lipman, D. J. (1990). Basic local alignment search tool. Journal of molecular biology, 215(3), 403-410.
 
-
-   
 
 
