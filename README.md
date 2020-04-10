@@ -33,6 +33,15 @@ In this project, we implemented 4 different classifiers with different configura
    •	and K-Nearest Neighbor using BLAST
  The datasets are split to test and train segments with the proportion of 0.2 and 0.8 respectively. 5-folds cross-validation is implemented to assist with more accurate results. 
 
+RESULTS:
+
+![](images/family-results.jpg)
+![](images/subfamily-results.jpg)
+
+![](images/k.jpg)
+![](images/e-value.jpg)
+
+
 
 REFERENCES:
 
