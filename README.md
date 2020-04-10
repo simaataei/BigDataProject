@@ -73,6 +73,11 @@ As mentioned before, transport proteins are crucial parts of each living cell. T
 We believe that classifying the sequences of amino acids needs specific feature engineering/extraction. Therefore, characterizing the amino acid sequences with a number and computing different features, as on our first feature vectors, may not lead to success. The specific type of this problem necessitates utilizing background knowledge of transporter proteins, and the BLAST algorithm provides this knowledge using protein pairwise alignment. 
 
 The purposed method reached 97.57% f1-score on classifying the sequences based on the 96 families and 97.81% for classifying the sequences based on the 50 different sub-families. The reliability of results is proved by using a 5-fold cross-validation method.
+Relying on this results, we have a successfull classifivstion on protein sequences into 96 families and 50 sub-families using BLAST and K-Nearest Neighbor algorithm. 
+
+As a future works, we are to investigate results of the best classifier on the de novo protein sequences. De novo sequencing is the analytical process that derives a peptide’s amino acid sequence from its tandem mass spectrum (MS/MS) without the assistance of a sequence database. It is in contrast to database search, which searches in a given database to find the target peptide. We are going to investigate the results and answer the question if the BLAST and KNN classification works for de novo protein sequences. 
+
+
 
 REFERENCES:
 
