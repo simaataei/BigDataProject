@@ -31,15 +31,21 @@ In this project, we implemented 4 different classifiers with different configura
    •	Random Forrest with various number of estimators (from 100 to 1500 with step of 100)
    •	K-Nearest Neighbor with different numbers of K
    •	and K-Nearest Neighbor using BLAST
- The datasets are split to test and train segments with the proportion of 0.2 and 0.8 respectively. 5-folds cross-validation is implemented to assist with more accurate results. 
+ The datasets are split to test and train segments with the proportion of 0.2 and 0.8 respectively. 5-folds cross-validation is implemented to assist with more accurate results. To implement the classifiers, we used scikit-learn, Bio-Python, BLAST command-line, and scipy.signal packages.
 
 RESULTS:
-
+Evaluations are reported with precision, recall and f1-score. Since multi-class classification and 5-fold cross-validation is implemented evaluation metrics are calculated using total tp, fp, tn, fn on the all folds. Macro and micro average of metrics for each class is available on the result files. We examined all the classifiers and the best results for the each classifier on the family dataset is reported as following.
 ![](images/family-results.jpg)
+Also, The best achieved results for the each classifier on the subfamily dataset is reported as following. 
 ![](images/subfamily-results.jpg)
 
+. 
+
+Hyper-parameter Tuning:
+Multiple hyper-parameters are examined to find the best result. Here, we explore parameters relating the best classifier, KNN and BLAST metric. Using . In order to improve the results, we tried different K values to find the best f1-score. As the following figure  presents, K=1 is the reaches the best f1-score in the both datasets. 
 
 ![](images/k.jpg)
+Also, all the classifiers are 
 ![](images/e-value.jpg)
 
 
